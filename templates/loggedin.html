@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+  <div class="col col-lg-8">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h3 class="card-title">Welcome, {{username}}!</h3>
+        <form method="post" action="/post">
+          <div class="form-group">
+            <label for="post">New post:</label>
+            <textarea class="form-control" name="post" rows="3" placeholder="What's on your mind?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" name="post-submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="card bg-light">
+      <div class="card-body">
+        <h3 class="card-title">Recent Posts</h3>
+        <ul>
+          {% for post in posts %}
+          <li>
+            {{ post.time|convert_time }} <strong>{{ post.user }}:</strong>
+            {{ post.text }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-lg-3">
+    <div class="card bg-light">
+      <div class="card-body">
+        <h3 class="card-title">Add Friend</h3>
+        <div class="card-body">
+          <form method="post" action="/addfriend">
+            <div class="form-group">
+              <input type="text" class="form-control" name="name" placeholder="username" />
+            </div>
+            <button type="submit" class="form-control btn btn-primary" name="addfriend">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="card bg-light">
+      <div class="card-body">
+        <h3 class="card-title">My Friends</h3>
+        <div class="card-body">
+          {% if friends %}
+            <ul>
+              {% for friend in friends %}
+                <li><a href="/friend/{{ friend.username }}">{{ friend.username }}</a></li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="card-text">
+              Sorry, no friends!
+            </p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

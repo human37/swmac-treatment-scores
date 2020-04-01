@@ -1,0 +1,57 @@
+{
+    "_default": {},
+    "users": {
+        "2": {
+            "username": "",
+            "password": "",
+            "friends": []
+        },
+        "3": {
+            "username": "ataylor",
+            "password": "asdf",
+            "friends": ["ataylor"]
+        },
+        "4": {
+            "username": "user123",
+            "password": "pass123",
+            "friends": []
+        }
+    },
+    "posts": {
+        "1": {
+            "user": "",
+            "text": "<code>def main():</code>\r\n",
+            "time": 1581027305.429037
+        },
+        "2": {
+            "user": "ataylor",
+            "text": "Hello",
+            "time": 1583123578.92492
+        },
+        "3": {
+            "user": "ataylor",
+            "text": "Whats up",
+            "time": 1583123584.384885
+        },
+        "4": {
+            "user": "ataylor",
+            "text": "",
+            "time": 1583123893.97359
+        },
+        "5": {
+            "user": "ataylor",
+            "text": "",
+            "time": 1583123895.386125
+        },
+        "6": {
+            "user": "ataylor",
+            "text": "",
+            "time": 1583123896.32733
+        },
+        "7": {
+            "user": "ataylor",
+            "text": "h",
+            "time": 1583123989.090084
+        }
+    }
+}

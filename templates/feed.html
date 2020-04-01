@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-md-center mb-4">
+  <h1 class="">SWMAC Mosquito Station Ranking System</h1>
+</div>
+
+<div class="row justify-content-md-center">
+
+  <div class="col col-lg-8">
+    <div class="card bg-light mb-3">
+      <div class="card-body">
+        <h3 class="card-title">New Post</h3>
+        <form method="post" action="/post">
+          <div class="form-group">
+            <textarea class="form-control" name="post" rows="3" placeholder="What's on your mind?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" name="post-submit">Submit</button>
+        </form>
+      </div>
+    </div>
+{% endblock %}

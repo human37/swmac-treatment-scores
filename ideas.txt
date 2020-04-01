@@ -1,0 +1,20 @@
+1. add a 'same' button
+2. allow user's to post a jpeg
+3. share capabilities
+4. commenting capabilities
+5. change the style to be better
+6. Coding theme
+7. Developers
+
+
+josh potential ideas:
+- 'back' button from friends page
+- 'link' button to click on friends name/ takes straight to their profile
+- add profile with things like name, interests, favorite language, etc.
+
+member emails:
+Ammon Taylor, ammonx9@gmail.com
+Tyson Price, d00349555@dmail.dixie.edu
+Josh Martinez, martinezjosh001@gmail.com 
+Shawn Hedgepeth, soccershawn11@gmail.com
+Cooper Libby, minicoop.33@gmail.com
