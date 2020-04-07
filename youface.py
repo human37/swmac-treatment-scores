@@ -12,9 +12,30 @@ db = TinyDB('db.json')
 
 @app.route('/')
 def index():
-    """Serves the main feed page for the user."""
-
+    # serves the main feed page for the user
     return render_template('feed.html')
+
+@app.route('/submitdata' , methods = ['POST'])
+def submit():
+    # recieves the answers to the questions from the forms
+    question1 = request.form.get('q1')
+    question2 = request.form.get('q2')
+    question3 = request.form.get('q3')
+    # adds them to the database
+    dbhelpers.new_station_data(db, question1, question2, question3)
+    return redirect(url_for('index'))
+
+@app.route('/rankdata' , methods = ['GET','POST'])
+def rank():
+    # gets all stations from the database, and calculates the score and ranks them
+    stations = dbhelpers.get_stations(db)
+    return render_template('rankedlist.html', stations=stations)
+
+@app.route('/resetlist', methods = ['POST'])
+def reset():
+    # clears all stations from the database
+    dbhelpers.reset_stations(db)
+    return rank()
 
 
 

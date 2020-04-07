@@ -1,22 +1,66 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
 <div class="row justify-content-md-center mb-4">
   <h1 class="">SWMAC Mosquito Station Ranking System</h1>
 </div>
-
+<div class="row justify-content-md-center mb-4">
+  <h5 class=""> Press 'Submit' to record the station. 
+                When you want to calculate priority scores for each station entered, go to the tab 'Ranked Listing'.</h5>
+</div>
+  
 <div class="row justify-content-md-center">
-
   <div class="col col-lg-8">
     <div class="card bg-light mb-3">
-      <div class="card-body">
-        <h3 class="card-title">New Post</h3>
-        <form method="post" action="/post">
-          <div class="form-group">
-            <textarea class="form-control" name="post" rows="3" placeholder="What's on your mind?"></textarea>
+      <form method="post" action="/submitdata">
+
+          <div class="card-body">
+            <h3 class="card-title">What station do you want to enter data for? (example: 'WA008')</h3>
+              <div class="q1">
+                <textarea
+                  class="form-control"
+                  name="q1"
+                  rows="3"
+                  placeholder="Enter here:"
+                ></textarea>
+              </div>
           </div>
-          <button type="submit" class="btn btn-primary" name="post-submit">Submit</button>
-        </form>
-      </div>
-    </div>
-{% endblock %}
+
+          <div class="card-body">
+            <h3 class="card-title">What is the geography of the station?</h3>
+              <div class="form-group">
+                <textarea
+                  class="form-control"
+                  name="q2"
+                  rows="3"
+                  placeholder="Enter here:"
+                ></textarea>
+              </div>
+          </div>
+
+          <div class="card-body">
+            <h3 class="card-title">What is the average temperature at the station?</h3>
+              <div class="form-group">
+                <textarea
+                  class="form-control"
+                  name="q3"
+                  rows="3"
+                  placeholder="Enter here:"
+                ></textarea>
+              </div>
+          </div>
+        </div>
+                    <button type="submit" class="btn btn-primary" name="post-submit">
+                      Submit
+                    </button>
+          </form>
+          <div class="row justify-content-md-center mb-4"></div>
+          <div class="row justify-content-md-center mb-4">&nbsp </div>
+          <div class="row justify-content-md-center"><h1>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+          </h1></div>
+          <footer><h6 class="row justify-content-md-center">Designed by students from Dixie State University &copy</h6></footer>
+    {% endblock %}
+  </div>
+</div>
+
+
+    

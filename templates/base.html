@@ -19,12 +19,12 @@
 
           <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-              <!--<li class="nav-item">
-                <a class="nav-link" href="https://dixie.edu">DSU</a>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Link 2</a>
-              </li>-->
+                <a class="nav-link" href="/rankdata">Ranked Listing</a>
+              </li>
             </ul>
             <ul class="navbar-nav pull-right">
               {% if user %}
@@ -37,12 +37,7 @@
         </div>
       </nav>
 
-      <div class="jumbotron">
-        <div class="container">
-          <h1><a href="/">{{title}}</a></h1>
-          <p class="lead">{{subtitle}}</p>
-        </div>
-      </div>
+      
 
       <div class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}

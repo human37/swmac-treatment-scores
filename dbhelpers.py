@@ -1,24 +1,19 @@
 import time
 from tinydb import Query
 
-def new_user(db, username, password):
-    users = db.table('users')
-    User = Query()
-    if users.get(User.username == username):
-        return None
-    return users.insert({'username': username, 'password': password, 'friends': []})
+def new_station_data(db, q1, q2, q3):
+    station_data = db.table('stations')
+    return station_data.insert({'q1': q1, 'q2': q2, 'q3':q3, 'time': time.time()})
 
-def get_user(db, username, password):
-    users = db.table('users')
-    User = Query()
-    return users.get((User.username == username) &
-            (User.password == password))
+def get_stations(db):
+    station_data = db.table('stations')
+    stations = station_data.all()
+    return stations
 
-def get_user_by_name(db, username):
-    users = db.table('users')
-    User = Query()
-    return users.get(User.username == username)
-
+def reset_stations(db):
+    station_data = db.table('stations')
+    station_data.purge()
+'''
 def delete_user(db, username, password):
     users = db.table('users')
     User = Query()
@@ -104,3 +99,4 @@ def get_comments(db, post):
     for comment in posts['comments']:
         comments.append(posts.get(comment))
     return comments
+'''
