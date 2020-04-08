@@ -3,9 +3,16 @@
 <div class="row justify-content-md-center mb-4">
   <h1 class="">SWMAC Mosquito Station Ranking System</h1>
 </div>
-<div class="row justify-content-md-center mb-4">
-  <h5 class=""> Press 'Submit' to record the station. 
-                When you want to calculate priority scores for each station entered, go to the tab 'Ranked Listing'.</h5>
+<div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="row justify-content-md-center mb-4">
+                <h5 class="">{{ message }}</h5>
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
 </div>
   
 <div class="row justify-content-md-center">
@@ -14,26 +21,26 @@
       <form method="post" action="/submitdata">
 
           <div class="card-body">
-            <h3 class="card-title">What station do you want to enter data for? (example: 'WA008')</h3>
-              <div class="q1">
-                <textarea
-                  class="form-control"
-                  name="q1"
-                  rows="3"
-                  placeholder="Enter here:"
-                ></textarea>
+            <h3 class="card-title">What station do you want to enter data for?</h3>
+              <div class="form-group">
+                <select name="q1" method="GET" >
+                    <option value="{{stations[0]}}" selected>{{stations[0]}}</option>
+                        {% for station in stations[1:] %}
+                            <option value="{{station}}">{{station}}</option>
+                        {% endfor %}
+                  </select>
               </div>
           </div>
 
           <div class="card-body">
             <h3 class="card-title">What is the geography of the station?</h3>
               <div class="form-group">
-                <textarea
-                  class="form-control"
-                  name="q2"
-                  rows="3"
-                  placeholder="Enter here:"
-                ></textarea>
+                <select name="q2" method="GET" >
+                    <option value="{{choices[0]}}" selected>{{choices[0]}}</option>
+                        {% for choice in choices[1:] %}
+                            <option value="{{choice}}">{{choice}}</option>
+                        {% endfor %}
+                  </select>
               </div>
           </div>
 
@@ -43,8 +50,8 @@
                 <textarea
                   class="form-control"
                   name="q3"
-                  rows="3"
-                  placeholder="Enter here:"
+                  rows="1"
+                  placeholder="Enter here in fahrenheit:"
                 ></textarea>
               </div>
           </div>
@@ -57,7 +64,7 @@
           <div class="row justify-content-md-center mb-4">&nbsp </div>
           <div class="row justify-content-md-center"><h1>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
           </h1></div>
-          <footer><h6 class="row justify-content-md-center">Designed by students from Dixie State University &copy</h6></footer>
+          <footer><h6 class="row justify-content-md-center">Develeoped by students from Dixie State University &copy</h6></footer>
     {% endblock %}
   </div>
 </div>

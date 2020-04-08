@@ -25,6 +25,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="/rankdata">Ranked Listing</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/moreinfo">Info Page</a>
+              </li>
             </ul>
             <ul class="navbar-nav pull-right">
               {% if user %}
@@ -37,21 +40,12 @@
         </div>
       </nav>
 
+
+      <div>&NonBreakingSpace;</div>
       
 
       <div class="container">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, message in messages %}
-            <div class="alert alert-dismissible alert-{{ category }} fade show" role="alert">
-                {{ message }}
-                <button type="button" class="close" data-dismiss="alert">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
+        
 
         {% block content %}
         {% endblock %}
