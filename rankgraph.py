@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 def saveGraph(stations):
+    matplotlib.pyplot.switch_backend('Agg')
     # generates a bar graph of each station and its score, and saves it to a png file
     station_names = []
     scores = []
