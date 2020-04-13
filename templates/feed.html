@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block content %}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='youface.css') }}" type="text/css">
 <div class="row justify-content-md-center mb-4">
   <h1 class="">SWMAC Mosquito Station Ranking System</h1>
 </div>
@@ -61,9 +61,6 @@
                     </button>
           </form>
           <div class="row justify-content-md-center mb-4"></div>
-          <div class="row justify-content-md-center mb-4">&nbsp </div>
-          <div class="row justify-content-md-center"><h1>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-          </h1></div>
           <footer><h6 class="row justify-content-md-center">Develeoped by students from Dixie State University &copy</h6></footer>
     {% endblock %}
   </div>

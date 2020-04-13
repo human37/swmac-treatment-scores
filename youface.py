@@ -3,6 +3,8 @@ import timeago
 from flask import Flask, render_template, redirect, url_for, request, flash, make_response
 from tinydb import TinyDB
 import dbhelpers
+import rankgraph
+from flask import Flask, render_template
 from geographyscore import geography_Score
 from locationscore import location_Score
 from tempscore import temperature_Score
@@ -13,11 +15,19 @@ __subtitle__ = 'Developed by students from Dixe State University'
 app = Flask('youface')
 db = TinyDB('db.json')
 
+@app.after_request
+def set_response_headers(response):
+    # forces flask to not cache static images
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
+
 def score(station, geography, temperature):
     tempscore = temperature_Score(int(temperature))
     geoscore = geography_Score(geography)
     stationscore = location_Score(station)
-    return round(((tempscore + geoscore + stationscore) / 3),3)
+    return 100 * round(((tempscore + geoscore + stationscore) / 3), 3)
 
 @app.route('/')
 def index():
@@ -36,13 +46,16 @@ def submit():
     question1 = request.form.get('q1')
     question2 = request.form.get('q2')
     question3 = request.form.get('q3')
-    # makes sure the whole form is completed correctly
-    try: 
-        int(question3)
-    except:
-        flash('Please use only numbers for the temperature!')
-        return redirect(url_for('index'))
-    if question1 == 'Select here:' or question2 == 'Select here:' or question3 == '': 
+    # makes sure the whole form is completed correctly, and only integers are used for temperature
+    if question1 == 'Select here:' or question2 == 'Select here:' or question3 not in '0123456789':
+        if question3 == '':
+            flash('Please complete all fields correctly!')
+            return redirect(url_for('index'))
+        try: 
+            int(question3)
+        except:
+            flash('Please use only numbers for the temperature!')
+            return redirect(url_for('index')) 
         flash('Please complete all fields correctly!')
     else:
         # adds them to the database
@@ -66,11 +79,16 @@ def rank():
     for i in range(len(sorted_stations)):
         sorted_stations[i]['rank'] = len(sorted_stations) - i
     sorted_stations.reverse()
+    # generates matplotlib graph and stores it in static/images/
+    if len(sorted_stations) >= 1:
+        # checks to see if there are any stations recorded, and if so it shows the graph
+        rankgraph.saveGraph(sorted_stations)
+        return render_template('rankedlist.html', stations = sorted_stations, plot_url = 'static/images/graph.png')
     return render_template('rankedlist.html', stations = sorted_stations)
 
 @app.route('/resetlist', methods = ['POST'])
 def reset():
-    # clears all stations from the database
+    # clears all stations from the database, and deletes graph.png
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
     return rank()
@@ -78,7 +96,6 @@ def reset():
 @app.route('/moreinfo')
 def infopage():
     return render_template('infopage.html')
-
 
 @app.template_filter('convert_time')
 def convert_time(ts):
