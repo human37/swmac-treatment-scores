@@ -1,4 +1,5 @@
 # numbers determeined by the average amount of mosquitos per pickup at each loaction. Higher average = Higher score.
+
 def location_Score(location):
     if location == "WAS008":
         return 1

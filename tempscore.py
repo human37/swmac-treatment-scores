@@ -1,3 +1,4 @@
+
 def temperature_Score(temp):
     if temp <= 17 or temp >= 35:
         return 0

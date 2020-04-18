@@ -24,6 +24,7 @@ def set_response_headers(response):
     return response
 
 def score(station, geography, temperature):
+    # calculates an average for the treatment priority score
     tempscore = temperature_Score(int(temperature))
     geoscore = geography_Score(geography)
     stationscore = location_Score(station)
@@ -31,6 +32,7 @@ def score(station, geography, temperature):
 
 @app.route('/')
 def index():
+    # reads in every station from stations.txt
     f = open('stations.txt', 'r')
     choices_stations = ['Select here:']
     for line in f:
@@ -46,17 +48,13 @@ def submit():
     question1 = request.form.get('q1')
     question2 = request.form.get('q2')
     question3 = request.form.get('q3')
-    # makes sure the whole form is completed correctly, and only integers are used for temperature
-    if question1 == 'Select here:' or question2 == 'Select here:' or question3 not in '0123456789':
+    # makes sure the whole form is completed correctly, and only numbers are used for temperature
+    if question1 == 'Select here:' or question2 == 'Select here:' or not question3.isdigit():
         if question3 == '':
             flash('Please complete all fields correctly!')
             return redirect(url_for('index'))
-        try: 
-            int(question3)
-        except:
-            flash('Please use only numbers for the temperature!')
-            return redirect(url_for('index')) 
-        flash('Please complete all fields correctly!')
+        flash('Please use only numbers for the temperature!')
+        return redirect(url_for('index')) 
     else:
         # adds them to the database
         dbhelpers.new_station_data(db, question1, question2, question3)
@@ -80,7 +78,7 @@ def rank():
         sorted_stations[i]['rank'] = len(sorted_stations) - i
     sorted_stations.reverse()
     # generates matplotlib graph and stores it in static/images/
-    if len(sorted_stations) >= 1:
+    if len(sorted_stations) > 1:
         # checks to see if there are any stations recorded, and if so it shows the graph
         rankgraph.saveGraph(sorted_stations)
         return render_template('rankedlist.html', stations = sorted_stations, plot_url = 'static/images/graph.png')
@@ -88,7 +86,7 @@ def rank():
 
 @app.route('/resetlist', methods = ['POST'])
 def reset():
-    # clears all stations from the database, and deletes graph.png
+    # clears all stations from the database
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
     return rank()

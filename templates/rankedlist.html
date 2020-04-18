@@ -8,11 +8,11 @@
         <div class="row justify-content-md-center mb-4">
           <h1 class="">Ranked listing of treatment priority scores</h1>
         </div>
-        <div class="row justify-content-md-center">
+          <div class="row justify-content-md-center mb-4">
             {% if plot_url %}
-                <img src={{ plot_url}} alt="Chart" height="50%" width="80%">
+                <img class="row justify-content-md-center" src={{ plot_url}} alt="Chart" >
             {% endif %}
-        </div>
+          </div>
         <div>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
