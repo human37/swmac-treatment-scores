@@ -13,6 +13,10 @@
         {% endif %}
     {% endwith %}
 </div>
+
+<div class="row justify-content-md-center mb-4" id="loading" style="display:none;">
+  <h5 class="">Generating scores...</h5>
+</div>
   
 <div class="row justify-content-md-center">
   <div class="col col-lg-8">
@@ -31,7 +35,7 @@
               </div>
           </div>
         </div>
-                    <button type="submit" class="btn btn-primary" name="post-submit">
+                    <button type="submit" class="btn btn-primary" name="post-submit" onclick="$('#loading').show();">
                       Submit
                     </button>
           </form>

@@ -56,9 +56,9 @@ def submit():
         celsius_temperature = (int(temperature) - 32) * 5/9
         # adds the new temperature to the database
         dbhelpers.new_temperature(db, celsius_temperature)
-        flash('Temperature recorded successfully!')
         # adds all stations to the database and rescores with new temperature
         setup(celsius_temperature)
+        flash('Scores generated successfully!')
     return redirect(url_for('index'))
 
 @app.route('/ranklisting' , methods = ['GET','POST'])
