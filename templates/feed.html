@@ -20,37 +20,13 @@
       <form method="post" action="/submitdata">
 
           <div class="card-body">
-            <h3 class="card-title">What station do you want to enter data for?</h3>
-              <div class="form-group">
-                <select name="q1" method="GET" >
-                    <option value="{{stations[0]}}" selected>{{stations[0]}}</option>
-                        {% for station in stations[1:] %}
-                            <option value="{{station}}">{{station}}</option>
-                        {% endfor %}
-                  </select>
-              </div>
-          </div>
-
-          <div class="card-body">
-            <h3 class="card-title">What is the geography of the station?</h3>
-              <div class="form-group">
-                <select name="q2" method="GET" >
-                    <option value="{{choices[0]}}" selected>{{choices[0]}}</option>
-                        {% for choice in choices[1:] %}
-                            <option value="{{choice}}">{{choice}}</option>
-                        {% endfor %}
-                  </select>
-              </div>
-          </div>
-
-          <div class="card-body">
-            <h3 class="card-title">What is the average temperature at the station?</h3>
+            <h3 class="card-title">What is the average temperature?</h3>
               <div class="form-group">
                 <textarea
                   class="form-control"
-                  name="q3"
+                  name="temperature_input"
                   rows="1"
-                  placeholder="Enter here in celsius:"
+                  placeholder="Enter here in fahrenheit:"
                 ></textarea>
               </div>
           </div>

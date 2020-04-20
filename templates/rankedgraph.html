@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<html>
+    <head>
+    </head>
+    <body>
+        <div class="row justify-content-md-center mb-4">
+          <h1 class="">Ranked graph of treatment priority scores</h1>
+        </div>
+        <div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="row justify-content-md-center">
+                        <h5 class="">{{ message }}</h5>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            </div>  
+          <div class="row justify-content-md-center mb-4">
+            {% if plot_url %}
+                <img class="row justify-content-md-center" src={{ plot_url}} alt="Chart" >
+            {% endif %}
+          </div>
+        <h1 style="padding-left:15%">
+        <form method="post" action="/resetgraph">
+          <button type="submit" class="btn btn-primary" name="post-submit">
+            Reset
+          </button>
+        </form>
+        </h1>
+          <footer>
+            <h6 class="row justify-content-md-center">
+                Develeoped by students from Dixie State University &copy
+            </h6>
+          </footer>
+    </body>
+</html> 
+{% endblock %}

@@ -1,1 +1,1 @@
-{"stations": {"1": {"q1": "WAS008", "q2": "Marshland", "q3": "20", "time": 1587143949.9495177}, "2": {"q1": "LEE002", "q2": "Residential", "q3": "36", "time": 1587144142.5604558}}, "_default": {}}
+{"_default": {}, "stations": {}, "temps": {"1": {"temperature": 19.444444444444443, "time": 1587423489.5400758}}}

@@ -8,11 +8,6 @@
         <div class="row justify-content-md-center mb-4">
           <h1 class="">Ranked listing of treatment priority scores</h1>
         </div>
-          <div class="row justify-content-md-center mb-4">
-            {% if plot_url %}
-                <img class="row justify-content-md-center" src={{ plot_url}} alt="Chart" >
-            {% endif %}
-          </div>
         <div>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
@@ -46,7 +41,7 @@
                   {% for station in stations %}
                       <tr>
                           <td>{{station['rank']}}</td>
-                          <td>{{station['q1']}}</td>
+                          <td>{{station['location']}}</td>
                           <td>{{station['score']}}</td>
                       </tr>
                   {% endfor %}

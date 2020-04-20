@@ -4,16 +4,29 @@ from flask import Flask, render_template, redirect, url_for, request, flash, mak
 from tinydb import TinyDB
 import dbhelpers
 import rankgraph
+import scoring_algorithm
 from flask import Flask, render_template
-from geographyscore import geography_Score
-from locationscore import location_Score
-from tempscore import temperature_Score
 
 __title__ = 'SWMAC Mosquito Ranking System'
 __subtitle__ = 'Developed by students from Dixe State University'
 
 app = Flask('youface')
 db = TinyDB('db.json')
+
+def setup(temperature):
+    # clears out any existing stations in the database
+    dbhelpers.reset_stations(db)
+    # reads from stations.txt into Station objects
+    f = open('stations.txt', 'r')
+    station_objects = []
+    for line in f:
+        line = line.split()
+        station = scoring_algorithm.Station(line[1], line[0])
+        station_objects.append(station)
+    f.close()
+    # adds each station into the database
+    for station in station_objects:
+        dbhelpers.new_stations(db, station, temperature)
 
 @app.after_request
 def set_response_headers(response):
@@ -23,73 +36,79 @@ def set_response_headers(response):
     response.headers['Expires'] = '0'
     return response
 
-def score(station, geography, temperature):
-    # calculates an average for the treatment priority score
-    tempscore = temperature_Score(int(temperature))
-    geoscore = geography_Score(geography)
-    stationscore = location_Score(station)
-    return 100 * round(((tempscore + geoscore + stationscore) / 3), 3)
-
 @app.route('/')
 def index():
-    # reads in every station from stations.txt
-    f = open('stations.txt', 'r')
-    choices_stations = ['Select here:']
-    for line in f:
-        choices_stations.append(line.strip())
-    f.close()
-    choices_geography = ['Select here:', 'Pond', 'Creek', 'Farmland', 'Residential', 'Marshland']
     # serves the main feed page for the user
-    return render_template('feed.html', choices = choices_geography, stations = choices_stations)
+    return render_template('feed.html')
 
 @app.route('/submitdata' , methods = ['POST'])
 def submit():
     # recieves the answers to the questions from the forms
-    question1 = request.form.get('q1')
-    question2 = request.form.get('q2')
-    question3 = request.form.get('q3')
-    # makes sure the whole form is completed correctly, and only numbers are used for temperature
-    if question1 == 'Select here:' or question2 == 'Select here:' or not question3.isdigit():
-        if question3 == '':
-            flash('Please complete all fields correctly!')
-            return redirect(url_for('index'))
+    temperature = request.form.get('temperature_input')
+    # makes sure  only numbers are used for temperature
+    if temperature == None or not temperature.isdigit():
         flash('Please use only numbers for the temperature!')
         return redirect(url_for('index')) 
     else:
-        # adds them to the database
-        dbhelpers.new_station_data(db, question1, question2, question3)
-        flash('Station recorded successfully!')
+        # clears out any existing records
+        dbhelpers.reset_temperature(db)
+        # converts to celsius
+        celsius_temperature = (int(temperature) - 32) * 5/9
+        # adds the new temperature to the database
+        dbhelpers.new_temperature(db, celsius_temperature)
+        flash('Temperature recorded successfully!')
+        # adds all stations to the database and rescores with new temperature
+        setup(celsius_temperature)
     return redirect(url_for('index'))
 
-@app.route('/rankdata' , methods = ['GET','POST'])
-def rank():
-    # gets all stations from the database, and calculates the score and ranks them
+@app.route('/ranklisting' , methods = ['GET','POST'])
+def rank_list():
+    # gets all stations from the database, and ranks them
     stations = dbhelpers.get_stations(db)
     stations_list = []
     # ranks each station in the database
     for station in stations:
-        name = station['q1']
-        geography = station['q2']
-        temperature = station['q3']
-        score_num = score(name, geography, temperature)
-        stations_list.append({'rank':None, 'q1':name, 'score':score_num})
+        name = station['location']
+        score_num = station['score']
+        stations_list.append({'rank':None, 'location':name, 'score':score_num})
     sorted_stations = sorted(stations_list, key = lambda i: (i['score']))
     for i in range(len(sorted_stations)):
         sorted_stations[i]['rank'] = len(sorted_stations) - i
     sorted_stations.reverse()
-    # generates matplotlib graph and stores it in static/images/
-    if len(sorted_stations) > 1:
-        # checks to see if there are any stations recorded, and if so it shows the graph
-        rankgraph.saveGraph(sorted_stations)
-        return render_template('rankedlist.html', stations = sorted_stations, plot_url = 'static/images/graph.png')
     return render_template('rankedlist.html', stations = sorted_stations)
 
 @app.route('/resetlist', methods = ['POST'])
-def reset():
+def reset_list():
     # clears all stations from the database
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
-    return rank()
+    return rank_list()
+
+@app.route('/rankgraph' , methods = ['GET','POST'])
+def rank_graph():
+    # gets all stations from the database, and ranks them
+    stations = dbhelpers.get_stations(db)
+    if len(stations) == 0:
+        return render_template('rankedgraph.html')
+    stations_list = []
+    # ranks each station in the database
+    for station in stations:
+        name = station['location']
+        score_num = station['score']
+        stations_list.append({'rank':None, 'location':name, 'score':score_num})
+    sorted_stations = sorted(stations_list, key = lambda i: (i['score']))
+    for i in range(len(sorted_stations)):
+        sorted_stations[i]['rank'] = len(sorted_stations) - i
+    sorted_stations.reverse()
+    rankgraph.saveGraph(sorted_stations)
+    return render_template('rankedgraph.html', stations = sorted_stations, plot_url = 'static/images/graph.png')
+
+@app.route('/resetgraph', methods = ['POST'])
+def reset_graph():
+    # clears all stations from the database
+    dbhelpers.reset_stations(db)
+    flash('Station data reset successfully!')
+    return rank_graph()
 
 @app.route('/moreinfo')
 def infopage():
@@ -101,6 +120,7 @@ def convert_time(ts):
     return timeago.format(ts, time.time())
 
 if __name__ == '__main__':
-    app.secret_key = 'math4800' #used as the secret key for cookies
+    #used as the secret key for cookies
+    app.secret_key = 'math4800' 
     app.config['SESSION_TYPE'] = 'filesystem'
     app.run(debug=True)
