@@ -1,19 +1,3 @@
-# YouFace README
-
-YouFace is a mock social media platform. Originally designed as an assignment
-for CS 1410, it has been simplified and modernized for CS 2450. This repository
-houses a rough implementation of the completed version of the original
-assignment, yet still provides minimal functionality. Your group will take this
-social media baseline and make it your own. Consider yourselves a small startup
-with a new and unique take on the social media market.
-
-This README is far from comprehensive. The entire project will provide you an
-opportunity to have the experience of jumping into an existing code base, having
-to learn about it as you go (lack of documentation and disorganized layouts are
-commonplace in the industry). With that in mind, I still want to help as much as
-I can. As you go about working on the project, please let me know of any
-specific areas where I could improve the documentation.
-
 ## Getting Started
 
 ### Installing Requirements
@@ -25,7 +9,7 @@ easily installed in one command:
 
 ### Running the Server
 
-The server main is found in `youface.py`. It requires Python 3 and can be run
+The server main is found in `main.py`. It requires Python 3 and can be run
 with the following command:
 
 `python3 youface.py`.
