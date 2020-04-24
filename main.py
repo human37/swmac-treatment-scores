@@ -5,7 +5,6 @@ from tinydb import TinyDB
 import dbhelpers
 import rankgraph
 import scoring_algorithm
-from flask import Flask, render_template
 
 __title__ = 'SWMAC Mosquito Ranking System'
 __subtitle__ = 'Developed by students from Dixe State University'
@@ -70,7 +69,7 @@ def rank_list():
     for station in stations:
         name = station['location']
         score_num = station['score']
-        stations_list.append({'rank':None, 'location':name, 'score':score_num})
+        stations_list.append({'rank' : None, 'location' : name, 'score' : score_num})
     sorted_stations = sorted(stations_list, key = lambda i: (i['score']))
     for i in range(len(sorted_stations)):
         sorted_stations[i]['rank'] = len(sorted_stations) - i
@@ -95,7 +94,7 @@ def rank_graph():
     for station in stations:
         name = station['location']
         score_num = station['score']
-        stations_list.append({'rank':None, 'location':name, 'score':score_num})
+        stations_list.append({'rank' : None, 'location' : name, 'score' : score_num})
     sorted_stations = sorted(stations_list, key = lambda i: (i['score']))
     for i in range(len(sorted_stations)):
         sorted_stations[i]['rank'] = len(sorted_stations) - i
@@ -120,7 +119,7 @@ def convert_time(ts):
     return timeago.format(ts, time.time())
 
 if __name__ == '__main__':
-    #used as the secret key for cookies
+    # used as the secret key for cookies
     app.secret_key = 'math4800' 
     app.config['SESSION_TYPE'] = 'filesystem'
     app.run(debug=True)

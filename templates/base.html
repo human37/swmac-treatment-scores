@@ -18,25 +18,18 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav mr-auto">
-              <li style="padding-right:20px;"class="nav-item">
+              <li style="padding-right:10px;"class="nav-item" class="a">
                 <a class="navbar-brand" href="/">Home</a>
               </li>
-              <li style="padding-right:20px;"class="nav-item">
+              <li style="padding-right:10px;"class="nav-item">
                 <a class="navbar-brand" href="/ranklisting">Ranked Listing</a>
               </li>
-              <li style="padding-right:20px;"class="nav-item">
+              <li style="padding-right:10px;"class="nav-item">
                 <a class="navbar-brand" href="/rankgraph">Ranked Graph</a>
               </li>
-              <li style="padding-right:20px;"class="nav-item">
+              <li style="padding-right:10px;"class="nav-item">
                 <a class="navbar-brand" href="/moreinfo">Info Page</a>
               </li>
-            </ul>
-            <ul class="navbar-nav pull-right">
-              {% if user %}
-              <form method="post" action="/logout">
-                <button type="submit" class="form-control btn btn-secondary" name="logout">Logout</button>
-              </form>
-              {% endif %}
             </ul>
           </div>
         </div>
