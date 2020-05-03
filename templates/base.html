@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <meta charset="utf-8">
-      <title>{{ title }}</title>
-      <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" type="text/css">
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    </head>
 
-    <body>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container">
-          <a class="navbar-brand" href="/">{{ title }}</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-              <li style="padding-right:10px;"class="nav-item" class="a">
-                <a class="navbar-brand" href="/">Home</a>
-              </li>
-              <li style="padding-right:10px;"class="nav-item">
-                <a class="navbar-brand" href="/ranklisting">Ranked Listing</a>
-              </li>
-              <li style="padding-right:10px;"class="nav-item">
-                <a class="navbar-brand" href="/rankgraph">Ranked Graph</a>
-              </li>
-              <li style="padding-right:10px;"class="nav-item">
-                <a class="navbar-brand" href="/moreinfo">Info Page</a>
-              </li>
-            </ul>
-          </div>
+<head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@200&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts.js') }}"></script>
+</head>
+
+<body>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div class="topnav" id="myTopnav">
+        <a href="/" class="active">Home</a>
+        <a href="/ranklisting">Ranked Listing</a>
+        <a href="/rankgraph">Ranked Graph</a>
+        <a href="/moreinfo">Info Page</a>
+        <a href="javascript:void(0);" class="icon" onclick="nav_mobile_view()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+    <div id="page-container">
+        <div id="content-wrap">
+            {% block content %}
+            {% endblock %}
         </div>
-      </nav>
-      <div>&NonBreakingSpace;</div>
-      <div class="container">
-        {% block content %}
-        {% endblock %}
-      </div>
-    </body>
+        <footer id="footer">
+            Develeoped by students from Dixie State University &copy
+        </footer>
+    </div>
+</body>
+
 </html>

@@ -14,7 +14,7 @@ def saveGraph(stations):
         scores.append(station['score'])
     y = np.arange(len(station_names))  
     fig, ax = plt.subplots(figsize=(8, 18))
-    ax.barh(y, scores, color = '#008cba')
+    ax.barh(y, scores, color = '#4caf50')
     ax.set_yticks(y)
     ax.set_yticklabels(station_names)
     ax.xaxis.tick_top()

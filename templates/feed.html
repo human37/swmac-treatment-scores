@@ -1,49 +1,34 @@
 {% extends "base.html" %} {% block content %}
-<div class="row justify-content-md-center mb-4">
-  <h1 class="">SWMAC Mosquito Station Ranking System</h1>
+<div class="page_title">
+    <h1>SWMAC Mosquito Station Ranking System</h1>
 </div>
-<div>
+<div class="alert">
     {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-            <div class="row justify-content-md-center mb-4">
-                <h5 class="">{{ message }}</h5>
-            </div>
-            {% endfor %}
-        {% endif %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert">
+        <h5 class="">{{ message }}</h5>
+    </div>
+    {% endfor %}
+    {% endif %}
     {% endwith %}
+    <div class="alert" id="loading" style="display:none;">
+        <h5 class="alert">Generating scores...</h5>
+    </div>
 </div>
-
-<div class="row justify-content-md-center mb-4" id="loading" style="display:none;">
-  <h5 class="">Generating scores...</h5>
-</div>
-  
-<div class="row justify-content-md-center">
-  <div class="col col-lg-8">
-    <div class="card bg-light mb-3">
-      <form method="post" action="/submitdata">
-
-          <div class="card-body">
-            <h3 class="card-title">What is the average temperature?</h3>
-              <div class="form-group">
-                <textarea
-                  class="form-control"
-                  name="temperature_input"
-                  rows="1"
-                  placeholder="Enter here in fahrenheit:"
-                ></textarea>
-              </div>
-          </div>
+    <div class="form">
+        <div class="input">
+            <form method="post" action="/submitdata">
+                <div>
+                    <h3 class="form_title">What is the average temperature?</h3>
+                    <div class="form_input">
+                        <textarea class="input_field" name="temperature_input" rows="1" 
+                            placeholder="Enter here in fahrenheit:"></textarea>
+                    </div>
+                </div>
         </div>
-                    <button type="submit" class="btn btn-primary" name="post-submit" onclick="$('#loading').show();">
-                      Submit
-                    </button>
-          
-          <div class="row justify-content-md-center"></div>
-          <footer><h6 class="row justify-content-md-center">Develeoped by students from Dixie State University &copy</h6></footer>
-    {% endblock %}
-  </div>
-</div>
-
-
-    
+        <button type="submit" class="submit_button" name="post-submit" onclick="$('#loading').show();">
+            Submit
+        </button>
+        {% endblock %}
+    </div>
