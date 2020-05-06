@@ -1,6 +1,6 @@
 /* Add a black background color to the top navigation */
 .topnav {
-    background-color: whitesmoke;
+    background-color: white;
     overflow: hidden;
     border: 1px solid #ccc;
     border-radius: 4px;

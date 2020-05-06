@@ -1,1 +1,167 @@
-{"_default": {}, "stations": {}, "temps": {"1": {"temperature": 19.444444444444443, "time": 1588545024.5738182}}}
+{
+    "_default": {},
+    "stations": {
+        "1": {
+            "location": "AVA001",
+            "score": 68.30000000000001
+        },
+        "2": {
+            "location": "ENT004",
+            "score": 49.9
+        },
+        "3": {
+            "location": "HiL001",
+            "score": 68.30000000000001
+        },
+        "4": {
+            "location": "HiL002",
+            "score": 49.9
+        },
+        "5": {
+            "location": "NHA001",
+            "score": 68.30000000000001
+        },
+        "6": {
+            "location": "NHA002",
+            "score": 68.30000000000001
+        },
+        "7": {
+            "location": "ROC002",
+            "score": 76.6
+        },
+        "8": {
+            "location": "SPR002",
+            "score": 48.3
+        },
+        "9": {
+            "location": "HUR002",
+            "score": 68.30000000000001
+        },
+        "10": {
+            "location": "HUR007",
+            "score": 68.30000000000001
+        },
+        "11": {
+            "location": "HUR008",
+            "score": 68.30000000000001
+        },
+        "12": {
+            "location": "HUR009",
+            "score": 56.599999999999994
+        },
+        "13": {
+            "location": "IVI001",
+            "score": 68.30000000000001
+        },
+        "14": {
+            "location": "IVI002",
+            "score": 51.6
+        },
+        "15": {
+            "location": "LEE002",
+            "score": 48.3
+        },
+        "16": {
+            "location": "HAR002",
+            "score": 68.30000000000001
+        },
+        "17": {
+            "location": "SCL001",
+            "score": 76.6
+        },
+        "18": {
+            "location": "SCL002",
+            "score": 76.6
+        },
+        "19": {
+            "location": "SCL004",
+            "score": 49.9
+        },
+        "20": {
+            "location": "SCL005",
+            "score": 76.6
+        },
+        "21": {
+            "location": "SGE001",
+            "score": 68.30000000000001
+        },
+        "22": {
+            "location": "SGE002",
+            "score": 48.3
+        },
+        "23": {
+            "location": "SGE003",
+            "score": 49.9
+        },
+        "24": {
+            "location": "SGE007",
+            "score": 49.9
+        },
+        "25": {
+            "location": "SGE009",
+            "score": 68.30000000000001
+        },
+        "26": {
+            "location": "SGE010",
+            "score": 76.6
+        },
+        "27": {
+            "location": "SGE011",
+            "score": 76.6
+        },
+        "28": {
+            "location": "SGE012",
+            "score": 68.30000000000001
+        },
+        "29": {
+            "location": "SGE013",
+            "score": 49.9
+        },
+        "30": {
+            "location": "SGE014",
+            "score": 76.6
+        },
+        "31": {
+            "location": "TOQ001",
+            "score": 51.6
+        },
+        "32": {
+            "location": "TOQ002",
+            "score": 51.6
+        },
+        "33": {
+            "location": "VIR001",
+            "score": 68.30000000000001
+        },
+        "34": {
+            "location": "VIR004",
+            "score": 49.9
+        },
+        "35": {
+            "location": "WAS001",
+            "score": 81.6
+        },
+        "36": {
+            "location": "WAS002",
+            "score": 48.3
+        },
+        "37": {
+            "location": "WAS005",
+            "score": 68.30000000000001
+        },
+        "38": {
+            "location": "WAS006",
+            "score": 68.30000000000001
+        },
+        "39": {
+            "location": "WAS008",
+            "score": 91.60000000000001
+        }
+    },
+    "temps": {
+        "1": {
+            "temperature": 25.555555555555557,
+            "time": 1588620069.873888
+        }
+    }
+}
