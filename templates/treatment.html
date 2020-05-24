@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="page_title">
+    <h1>Input treatment information to update scores</h1>
+</div>
+
+<div class="alert">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert">
+        <h5 class="">{{ message }}</h5>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="alert" id="loading" style="display:none;">
+        <h5 class="alert">Regenerating scores...</h5>
+    </div>
+</div>
+
+<div class="form">
+    <div class="input">
+        <form method="post" action="/submit_treatment">
+            <div>
+                <h3 class="form_title">Which station has had treatment?</h3>
+                <div class="form_input">
+                    <select class ="input_field" name="treatment_input" method="GET" action="/">
+                        <option value="{{stations[0]['location']}}" selected>{{stations[0]['location']}}</option>
+                        {% for station in stations[1:] %}
+                            <option value="{{station['location']}}">{{station['location']}}</option>
+                        {% endfor %}
+                      </select>
+                </div>
+            </div>
+    </div>
+    <button type="submit" class="submit_button" name="post-submit" onclick="$('#loading').show();">
+        Submit
+    </button>
+</div>
+
+{% endblock %}

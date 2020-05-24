@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <div class="page_title">
-    <h1>SWMAC Mosquito Station Ranking System</h1>
+    <h1>SWMAC mosquito station ranking system</h1>
 </div>
 <div class="alert">
     {% with messages = get_flashed_messages() %}
@@ -18,7 +18,7 @@
 </div>
     <div class="form">
         <div class="input">
-            <form method="post" action="/submitdata">
+            <form method="post" action="/submit_temperature">
                 <div>
                     <h3 class="form_title">What is the average temperature?</h3>
                     <div class="form_input">
@@ -31,4 +31,3 @@
             Submit
         </button>
         {% endblock %}
-    </div>

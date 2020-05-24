@@ -27,6 +27,21 @@ def setup(temperature):
     for station in station_objects:
         dbhelpers.new_stations(db, station, temperature)
 
+def rank():
+    # gets all stations from the database
+    stations = dbhelpers.get_stations(db)
+    stations_list = []
+    # ranks each station in the database
+    for station in stations:
+        name = station['location']
+        score_num = station['score']
+        stations_list.append({'rank' : None, 'location' : name, 'score' : score_num})
+    sorted_stations = sorted(stations_list, key = lambda i: (i['score']))
+    for i in range(len(sorted_stations)):
+        sorted_stations[i]['rank'] = len(sorted_stations) - i
+    sorted_stations.reverse()
+    return sorted_stations
+
 @app.after_request
 def set_response_headers(response):
     # forces flask to not cache static images
@@ -40,8 +55,8 @@ def index():
     # serves the main feed page for the user
     return render_template('feed.html')
 
-@app.route('/submitdata' , methods = ['POST'])
-def submit():
+@app.route('/submit_temperature' , methods = ['POST'])
+def submit_temperature():
     # recieves the answers to the questions from the forms
     temperature = request.form.get('temperature_input')
     # makes sure  only numbers are used for temperature
@@ -60,20 +75,24 @@ def submit():
         flash('Scores generated successfully!')
     return redirect(url_for('index'))
 
+@app.route('/treatment', methods = ['GET'])
+def input_treatment():
+    stations = dbhelpers.get_stations(db)
+    return render_template('treatment.html', stations = stations)
+
+@app.route('/submit_treatment' , methods = ['POST'])
+def submit_treatment():
+    total_treatments = dbhelpers.get_treatments(db)
+    treated_station = request.form.get('treatment_input')
+    if treated_station not in total_treatments['station']:
+        dbhelpers.new_treatment(db, treated_station)
+    else:
+        flash('This station has already recieved treatment within the past 3 days.')
+
+
 @app.route('/ranklisting' , methods = ['GET','POST'])
 def rank_list():
-    # gets all stations from the database, and ranks them
-    stations = dbhelpers.get_stations(db)
-    stations_list = []
-    # ranks each station in the database
-    for station in stations:
-        name = station['location']
-        score_num = station['score']
-        stations_list.append({'rank' : None, 'location' : name, 'score' : score_num})
-    sorted_stations = sorted(stations_list, key = lambda i: (i['score']))
-    for i in range(len(sorted_stations)):
-        sorted_stations[i]['rank'] = len(sorted_stations) - i
-    sorted_stations.reverse()
+    sorted_stations = rank()
     return render_template('rankedlist.html', stations = sorted_stations)
 
 @app.route('/resetlist', methods = ['POST'])
@@ -85,20 +104,10 @@ def reset_list():
 
 @app.route('/rankgraph' , methods = ['GET','POST'])
 def rank_graph():
-    # gets all stations from the database, and ranks them
-    stations = dbhelpers.get_stations(db)
-    if len(stations) == 0:
+    # gets all stations from the database, and ranks them and generates a graph
+    sorted_stations = rank()
+    if len(sorted_stations) == 0:
         return render_template('rankedgraph.html')
-    stations_list = []
-    # ranks each station in the database
-    for station in stations:
-        name = station['location']
-        score_num = station['score']
-        stations_list.append({'rank' : None, 'location' : name, 'score' : score_num})
-    sorted_stations = sorted(stations_list, key = lambda i: (i['score']))
-    for i in range(len(sorted_stations)):
-        sorted_stations[i]['rank'] = len(sorted_stations) - i
-    sorted_stations.reverse()
     rankgraph.saveGraph(sorted_stations)
     return render_template('rankedgraph.html', stations = sorted_stations, plot_url = 'static/images/graph.png')
 

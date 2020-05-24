@@ -26,3 +26,11 @@ def reset_temperature(db):
 def reset_stations(db):
     station_data = db.table('stations')
     station_data.purge()
+
+def new_treatment(db, station):
+    treatments = db.table('treatments')
+    return treatments.insert({'station' : station, 'time' : time.time()})
+
+def get_treatments(db):
+    treatments = db.table('treatments')
+    return treatments

@@ -32,7 +32,7 @@
     display: none;
 }
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
     float: right;
@@ -40,7 +40,25 @@
     }
 }
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (max-width: 600px) {
+#mosquito_temp_image {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 100%;
+    display:block;
+}
+.page_content {
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#parabola_equation {
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+}
+@media screen and (max-width: 700px) {
     .topnav.responsive {position: relative;}
     .topnav.responsive a.icon {
     position: absolute;
@@ -56,7 +74,9 @@
         width:500px;
         height:1136px;
     }
-
+    .page_content {
+        max-width: 100%;
+    }
 }
 .page_title {
     text-align: center;
@@ -69,7 +89,6 @@
     margin: 8px 0;
     margin-left: auto;
     margin-right: auto;
-
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -120,6 +139,7 @@
     bottom: 0;
     width: 100%;
     height: 2.5rem;            /* Footer height */
+    color: gray;
     }
 table, th, td {
     border: 1px solid black;
@@ -140,4 +160,7 @@ table {
    margin-right: auto;
    margin-left: auto;
    text-align: center;
+}
+h3 {
+    text-align: center;
 }

@@ -10,33 +10,74 @@
         </h1>
     </div>
     <div class="page_content">
-        <h3>Quick Overview</h3>
-        <p> Most of the numbers recorded from the SWMAC do not seem reliable, they are too consistent with multiple values equaling
-        100 and the majority equaling 1 or 2. This makes some of the plots of data sparse. Too much time has already been spent
-        on digging through what reliable data we can find. A better way of going about this would be to start working on
-        formulas we can plug in the information by hand and then look ahead and try to compile the data, then see what
-        differences are made. If there is a large inconsistency between the data given and the data we tidied up, the next
-        choice would be to break the data down into smaller points and compile the data that way. The temperature data was
-        incomplete, so we went out and used python to bring in data that correlates with good data we have on the mosquito to
-        have more accurate temperature readings. But we also know that the weather compared to the data received from the
-        organization will be less accurate for the most part. But due to the large gaps of no given temperature data we believe
-        this is the best way to go about using temperature for our work. </p>
-        <h3>How it was Processed</h3>
-        <p> Our data was taken from a reorganized version of the data given by the SWMAC, with that data we came up with few charts
-        and graphs that can generally depict trends among mosquito species. These trends were the baseline of how we would later
-        score a location with a given mosquito population. When providing data for these charts and graphs we only took the
-        reliable and consistent data. We also took data for locations like the area code, the coordinates and geography. With
-        that we could provide the minimum needed to categorize each location. We also were trying to cluster our data yet that
-        proved to not work, since the majority of mosquitos all have the same distributions over the same period where the
-        temperature is increasing, they cannot be put into corresponding clusters depending on species or temperature. Another
-        reason as to why we could not cluster the data was that it was so sporadic we could not relate the data to the other
-        existing data, and we cannot compare categorical data to numerical data. </p>
-        <h3>What was Valuable</h3>
-        <p> For the most part the data from SWMAC is unusable. We only took the data we deemed necessary, which is the number of
-        mosquitos captured for a given location or geography. Using this small sample of data we can compare it to a broad
-        number of other types of graphs, be it the distribution of mosquitos from an outside source to another source showing
-        the number of mosquitos proportional to the temperature at a given location. With our data we have the numbers and would
-        only need to check if the temperature matches the temperature and numbers of the data we are looking into. </p>
+        <h3>Abstract</h3>
+        <p> Mosquito-borne diseases including the West Nile Virus, Zika Virus, and Malaria kill millions of people every
+            year. The Southwest Mosquito Abatement Center (SWMAC) has brought attention to the issue of mosquitoes
+            within the southwest region of Utah. In order to better control mosquito population, the SWMAC has given our
+            team the goal to find a solution to make their treatment methods more efficient. Throughout this paper, we
+            describe our process of using historical treatment data collected by the SWMAC, in order to develop tools
+            that will increase the future effectiveness and efficiency of their treatment methods. A tool we developed
+            was a station scoring algorithm. Our scoring algorithm scores each station with a treatment priority score,
+            with a higher score meaning a higher chance of a mosquito issue at that station. Our scoring algorithm takes
+            three variables, the temperature, geography, and location. We implemented our scoring algorithm into a web
+            application that helps the employees of the SWMAC. It allows them to input temperature and treatment data,
+            and then display the treatment priority scores for each station.</p>
+        <h3>Introduction</h3>
+        <p> The Southwest Mosquito Abatement Center is a government funded agency, with its primary funding coming from
+            property taxes. Everytime the SWMAC goes out for treatment, it costs taxpayers money. In order to make their
+            treatment more cost effective and efficient, the SWMAC has tasked us to develop solutions to show which
+            areas, and at what time, they should prioritize treatment. To assist in our solutions, they gave us their
+            historical treatment and mosquito trapping data from the previous couple years.
+            The initial problem we discovered was how to model the mosquito population in multiple locations with a
+            variety of different climates and geographies. One method we discussed was finding trends in the historical
+            datasets given, in order to better predict the amount of treatment needed for the future. In order to begin,
+            we need to find any significant correlations we can, for example one could be between geography and the
+            number of mosquitoes trapped, or the temperature and average number of mosquitoes trapped, etc.</p>
+        <h3>Data analysis</h3>
+        <p> We had some issues with the datasets that were given to us from the SWMAC. The datasets included information
+            on the amount of mosquitoes found in traps throughout each year, the mosquito species distributions,
+            geographical data, and also meteorological data including humidity and temperature. However, there were gaps
+            in the tables, which made it difficult to graph in order to evaluate trends in the datasets. The temperature
+            data was significantly incomplete, so we used an online weather service to bring in historical weather data,
+            in order to have more accurate temperature readings. We used this temperature data to fill in the gaps with
+            the incomplete temperature data we were already given. We then attempted to find meaningful correlations in
+            the datasets. Here is a graph we generated from the temperature data and mosquito trapping data.</p>
+        <img id='mosquito_temp_image' src="static/images/mosq_temp.png"
+            alt="Graph comparing temperature and number of mosquitoes trapped">
+        <h3>Developing our scoring algorithm</h3>
+        <p> By examining the graph we generated from the temperature data and mosquito trapping data, we noticed a bell
+            curve trend among mosquito activity in respect to temperature. Using a parabola to model this trend, we
+            could generate an equation to output a treatment priority score by using the temperature of the station as
+            input. Our treatment priority score would correspond to the height of the parabola on the x axis, and be
+            normalized to a number between zero and one hundred. By using a piecewise function, if the input temperature
+            was outside of a specific range, then the score would be zero. Otherwise it would be modeled by the
+            following parabola function. </p>
+        <a href="https://www.codecogs.com/eqnedit.php?latex=f(x)&space;=&space;\frac{-&space;1.975(x-26)^{2}&space;&plus;&space;160}{160}"
+            target="_blank"> <img id='parabola_equation'
+                src="https://latex.codecogs.com/gif.latex?f(x)&space;=&space;\frac{-&space;1.975(x-26)^{2}&space;&plus;&space;160}{160}"
+                title="f(x) = \frac{- 1.975(x-26)^{2} + 160}{160}" />
+        </a>
+        <p> We also used the stations location and geography. When scoring location we did not make it as dynamic as the
+            scoring of temperature. This was due to the
+            nature of categorical data. In order to have a station's location weigh in on its treatment priority score,
+            we would rank certain stations higher depending on the average number of mosquitoes trapped at that
+            location.
+            Similar to our location score, geography receives its score from our chart that shows the average number of
+            mosquitos in each respective geography category. Again, in order to have a station's geography weigh in on
+            its treatment priority score, we would rank certain geography categories higher depending on the average
+            number of mosquitoes trapped in that category.
+        </p>
+        <h3>Implementation</h3>
+        <p> In order to implement our tool into a product the Southwest Mosquito Abatement Center could utilize, we felt
+            a web application was the most appropriate. It would allow any employee to use the service without having to
+            download anything. Python is our team's strongest language, so we felt developing a Flask web server would
+            be the most efficient way to accomplish this. Flask allows us to write the backend using python, and would
+            save us time due to the fact that our scoring algorithm was previously implemented in python. The server
+            allows the user to enter temperature and treatment information, and will return the treatment priority score
+            for each mosquito trapping station.
+        </p>
+        <h3>Contact</h3>
+        <p style="text-align:center"> If you have any issues with the application, please contact <a href = "mailto: ammonx9@gmail.com">here</a></p>
     </div>
 </body>
 
