@@ -30,13 +30,14 @@ with the following command:
 │   ├── bootstrap.min.css
     ├── images
         ├── graph.png
+        ├── mosq_temp.png
 ├── templates
 │   ├── base.html
 │   ├── feed.html
 │   ├── infopage.html
 │   ├── rankedgraph.html
 │   ├── rankedlist.html
-│   └── nav.html
+│   └── treatment.html
 ├── main.py
 ├── rankgraph.py
 ├── scoring_algorithm.py

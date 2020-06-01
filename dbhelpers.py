@@ -33,4 +33,12 @@ def new_treatment(db, station):
 
 def get_treatments(db):
     treatments = db.table('treatments')
-    return treatments
+    return treatments.all()
+
+def hard_reset_treatments(db):
+    treatments = db.table('treatments')
+    treatments.purge()
+
+def treatment_expiration(db):
+    treatments = db.table('treatments')
+    # this will remove one station from the treatment table after 3 days since last treatment. 

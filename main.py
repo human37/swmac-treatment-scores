@@ -77,18 +77,22 @@ def submit_temperature():
 
 @app.route('/treatment', methods = ['GET'])
 def input_treatment():
+    # gets all stations and renders treatment.html
     stations = dbhelpers.get_stations(db)
     return render_template('treatment.html', stations = stations)
 
 @app.route('/submit_treatment' , methods = ['POST'])
 def submit_treatment():
-    total_treatments = dbhelpers.get_treatments(db)
+    # recieves specific station and records in the treatments table
     treated_station = request.form.get('treatment_input')
-    if treated_station not in total_treatments['station']:
-        dbhelpers.new_treatment(db, treated_station)
-    else:
-        flash('This station has already recieved treatment within the past 3 days.')
-
+    all_treatments = dbhelpers.get_treatments(db)
+    for station in all_treatments:
+        if treated_station == station['station']:
+            flash('This station has already recieved treatment within the past 3 days')
+            return input_treatment()
+    dbhelpers.new_treatment(db, treated_station)
+    flash("Treatment information was updated successfully!")
+    return input_treatment()
 
 @app.route('/ranklisting' , methods = ['GET','POST'])
 def rank_list():
