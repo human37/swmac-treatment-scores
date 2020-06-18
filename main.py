@@ -5,10 +5,7 @@ import dbhelpers
 import rankgraph
 import scoring_algorithm
 
-__title__ = 'SWMAC Mosquito Ranking System'
-__subtitle__ = 'Developed by students from Dixe State University'
-
-app = Flask('app')
+app = Flask(__name__)
 db = TinyDB('db.json')
 
 def setup(temperature):
@@ -156,4 +153,4 @@ if __name__ == '__main__':
     # used as the secret key for cookies
     app.secret_key = 'math4800' 
     app.config['SESSION_TYPE'] = 'filesystem'
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
