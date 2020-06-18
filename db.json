@@ -1,1 +1,169 @@
-{"_default": {}, "stations": {"1": {"location": "AVA001", "score": 35.0}, "2": {"location": "ENT004", "score": 16.7}, "3": {"location": "HiL001", "score": 35.0}, "4": {"location": "HiL002", "score": 16.7}, "5": {"location": "NHA001", "score": 35.0}, "6": {"location": "NHA002", "score": 35.0}, "7": {"location": "ROC002", "score": 43.3}, "8": {"location": "SPR002", "score": 15.0}, "9": {"location": "HUR002", "score": 35.0}, "10": {"location": "HUR007", "score": 35.0}, "11": {"location": "HUR008", "score": 35.0}, "12": {"location": "HUR009", "score": 23.3}, "13": {"location": "IVI001", "score": 35.0}, "14": {"location": "IVI002", "score": 18.3}, "15": {"location": "LEE002", "score": 15.0}, "16": {"location": "HAR002", "score": 35.0}, "17": {"location": "SCL001", "score": 43.3}, "18": {"location": "SCL002", "score": 43.3}, "19": {"location": "SCL004", "score": 16.7}, "20": {"location": "SCL005", "score": 43.3}, "21": {"location": "SGE001", "score": 35.0}, "22": {"location": "SGE002", "score": 15.0}, "23": {"location": "SGE003", "score": 16.7}, "24": {"location": "SGE007", "score": 16.7}, "25": {"location": "SGE009", "score": 35.0}, "26": {"location": "SGE010", "score": 43.3}, "27": {"location": "SGE011", "score": 43.3}, "28": {"location": "SGE012", "score": 35.0}, "29": {"location": "SGE013", "score": 16.7}, "30": {"location": "SGE014", "score": 43.3}, "31": {"location": "TOQ001", "score": 18.3}, "32": {"location": "TOQ002", "score": 18.3}, "33": {"location": "VIR001", "score": 35.0}, "34": {"location": "VIR004", "score": 16.7}, "35": {"location": "WAS001", "score": 48.3}, "36": {"location": "WAS002", "score": 15.0}, "37": {"location": "WAS005", "score": 35.0}, "38": {"location": "WAS006", "score": 35.0}, "39": {"location": "WAS008", "score": 58.3}}, "temps": {"1": {"temperature": 1.1111111111111112, "time": 1590980230.2577689}}, "treatments": {"1": {"station": "IVI001", "time": 1590980014.450604}, "2": {"station": "AVA001", "time": 1590980234.0721002}, "3": {"station": "AVA001", "time": 1590980342.2473059}, "4": {"station": "AVA001", "time": 1590980356.5492349}, "5": {"station": "AVA001", "time": 1590980728.693407}, "6": {"station": "HiL002", "time": 1590980733.546881}, "7": {"station": "AVA001", "time": 1590980789.1984682}, "8": {"station": "AVA001", "time": 1590980852.338419}, "9": {"station": "SPR002", "time": 1590981098.268218}, "10": {"station": "ENT004", "time": 1590981101.754242}}}
+{
+    "_default": {},
+    "stations": {
+        "1": {
+            "location": "HiL001",
+            "score": 35.0
+        },
+        "2": {
+            "location": "HiL002",
+            "score": 16.7
+        },
+        "3": {
+            "location": "NHA001",
+            "score": 35.0
+        },
+        "4": {
+            "location": "NHA002",
+            "score": 35.0
+        },
+        "5": {
+            "location": "ROC002",
+            "score": 43.3
+        },
+        "6": {
+            "location": "HUR002",
+            "score": 35.0
+        },
+        "7": {
+            "location": "HUR007",
+            "score": 35.0
+        },
+        "8": {
+            "location": "HUR008",
+            "score": 35.0
+        },
+        "9": {
+            "location": "HUR009",
+            "score": 23.3
+        },
+        "10": {
+            "location": "IVI002",
+            "score": 18.3
+        },
+        "11": {
+            "location": "LEE002",
+            "score": 15.0
+        },
+        "12": {
+            "location": "HAR002",
+            "score": 35.0
+        },
+        "13": {
+            "location": "SCL002",
+            "score": 43.3
+        },
+        "14": {
+            "location": "SCL004",
+            "score": 16.7
+        },
+        "15": {
+            "location": "SCL005",
+            "score": 43.3
+        },
+        "16": {
+            "location": "SGE001",
+            "score": 35.0
+        },
+        "17": {
+            "location": "SGE002",
+            "score": 15.0
+        },
+        "18": {
+            "location": "SGE003",
+            "score": 16.7
+        },
+        "19": {
+            "location": "SGE007",
+            "score": 16.7
+        },
+        "20": {
+            "location": "SGE009",
+            "score": 35.0
+        },
+        "21": {
+            "location": "SGE010",
+            "score": 43.3
+        },
+        "22": {
+            "location": "SGE011",
+            "score": 43.3
+        },
+        "23": {
+            "location": "SGE012",
+            "score": 35.0
+        },
+        "24": {
+            "location": "SGE013",
+            "score": 16.7
+        },
+        "25": {
+            "location": "SGE014",
+            "score": 43.3
+        },
+        "26": {
+            "location": "TOQ001",
+            "score": 18.3
+        },
+        "27": {
+            "location": "TOQ002",
+            "score": 18.3
+        },
+        "28": {
+            "location": "VIR001",
+            "score": 35.0
+        },
+        "29": {
+            "location": "VIR004",
+            "score": 16.7
+        },
+        "30": {
+            "location": "WAS002",
+            "score": 15.0
+        },
+        "31": {
+            "location": "WAS005",
+            "score": 35.0
+        },
+        "32": {
+            "location": "WAS006",
+            "score": 35.0
+        }
+    },
+    "temps": {
+        "1": {
+            "temperature": 10.0,
+            "time": 1592452613.645558
+        }
+    },
+    "treatments": {
+        "3": {
+            "station": "ENT004",
+            "time": 1592438732.196457
+        },
+        "5": {
+            "station": "AVA001",
+            "time": 1592440511.9200158
+        },
+        "6": {
+            "station": "SPR002",
+            "time": 1592440551.479845
+        },
+        "7": {
+            "station": "SCL001",
+            "time": 1592440578.020402
+        },
+        "8": {
+            "station": "WAS001",
+            "time": 1592440590.6516259
+        },
+        "9": {
+            "station": "IVI001",
+            "time": 1592452457.6533911
+        },
+        "10": {
+            "station": "WAS008",
+            "time": 1592452589.914562
+        }
+    }
+}

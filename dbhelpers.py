@@ -1,9 +1,10 @@
 import time
 from tinydb import Query
+from tinydb import where
 
 def new_temperature(db, temperature):
     temps = db.table('temps')
-    return temps.insert({'temperature' : temperature,'time': time.time()})
+    return temps.insert({'temperature' : temperature, 'time': time.time()})
 
 def new_stations(db, station, temperature):
     stations = db.table('stations')
@@ -29,16 +30,16 @@ def reset_stations(db):
 
 def new_treatment(db, station):
     treatments = db.table('treatments')
-    return treatments.insert({'station' : station, 'time' : time.time()})
+    return treatments.insert({'station' : station ,'time' : time.time()})
 
 def get_treatments(db):
     treatments = db.table('treatments')
     return treatments.all()
 
-def hard_reset_treatments(db):
+def reset_treatments(db):
     treatments = db.table('treatments')
     treatments.purge()
 
-def treatment_expiration(db):
+def delete_treatment(db, station):
     treatments = db.table('treatments')
-    # this will remove one station from the treatment table after 3 days since last treatment. 
+    treatments.remove(where('station') == station)

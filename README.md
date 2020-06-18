@@ -56,7 +56,6 @@ The following external libraries were used to help make this project.
     - https://realpython.com/primer-on-jinja-templating/
 - [TinyDB](https://pypi.org/project/tinydb/)
     - See examples in dbhelpers.py
-- [timeago](https://pypi.org/project/timeago/)
 - [matplotlib](https://pypi.org/project/matplotlib/)
 
 
