@@ -22,11 +22,11 @@ def get_temperature(db):
 
 def reset_temperature(db):
     temps = db.table('temps')
-    temps.purge()
+    temps.truncate()
 
 def reset_stations(db):
     station_data = db.table('stations')
-    station_data.purge()
+    station_data.truncate()
 
 def new_treatment(db, station):
     treatments = db.table('treatments')
@@ -38,7 +38,7 @@ def get_treatments(db):
 
 def reset_treatments(db):
     treatments = db.table('treatments')
-    treatments.purge()
+    treatments.truncate()
 
 def delete_treatment(db, station):
     treatments = db.table('treatments')

@@ -58,7 +58,7 @@
     margin-right: auto;
     display:block;
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
     .topnav.responsive {position: relative;}
     .topnav.responsive a.icon {
     position: absolute;
