@@ -11,10 +11,10 @@ easily installed in one command:
 
 ### Running the Server
 
-The server main is found in `main.py`. It requires Python 3 and can be run
+The server main is found in `application.py`. It requires Python 3 and can be run
 with the following command:
 
-`python3 main.py`.
+`python3 application.py`.
 
 ## Development
 
@@ -38,7 +38,7 @@ with the following command:
 │   ├── rankedgraph.html
 │   ├── rankedlist.html
 │   └── treatment.html
-├── main.py
+├── application.py
 ├── rankgraph.py
 ├── scoring_algorithm.py
 ```
