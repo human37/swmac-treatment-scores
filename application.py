@@ -1,11 +1,15 @@
 import time
+import os
 from flask import Flask, render_template, redirect, url_for, request, flash, make_response
 from tinydb import TinyDB
 import dbhelpers
 import rankgraph
 import scoring_algorithm
 
-app = Flask(__name__)
+application = Flask(__name__)
+
+# application.secret_key = 'xc3hJVxdbPLxaatX1wSx11r&xdcx8ebm8xd3m'
+
 db = TinyDB('db.json')
 
 def setup(temperature):
@@ -56,7 +60,7 @@ def manage_treatments():
             # if so remove the treatment from the database
             dbhelpers.delete_treatment(db, treatment['station'])
 
-@app.after_request
+@application.after_request
 def set_response_headers(response):
     # forces flask to not cache static images
     response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
@@ -64,12 +68,13 @@ def set_response_headers(response):
     response.headers['Expires'] = '0'
     return response
 
-@app.route('/')
+@application.route('/')
 def index():
     # serves the main feed page for the user
-    return render_template('feed.html')
+    stations = rank()
+    return render_template('feed.html', stations = stations)
 
-@app.route('/submit_temperature' , methods = ['POST'])
+@application.route('/submit_temperature' , methods = ['POST'])
 def submit_temperature():
     # recieves the answers to the questions from the forms
     temperature = request.form.get('temperature_input')
@@ -89,7 +94,7 @@ def submit_temperature():
         flash('Scores generated successfully!')
     return redirect(url_for('index'))
 
-@app.route('/treatment', methods = ['GET'])
+@application.route('/treatment', methods = ['GET'])
 def input_treatment():
     # gets all stations and renders treatment.html
     f = open('stations.txt', 'r')
@@ -101,7 +106,7 @@ def input_treatment():
     f.close()
     return render_template('treatment.html', stations = stations)
 
-@app.route('/submit_treatment' , methods = ['POST'])
+@application.route('/submit_treatment' , methods = ['POST'])
 def submit_treatment():
     # recieves specific station and records in the 'treatments' table
     treated_station = request.form.get('treatment_input')
@@ -117,19 +122,19 @@ def submit_treatment():
     flash("Treatment information was updated successfully!")
     return input_treatment()
 
-@app.route('/ranklisting' , methods = ['GET','POST'])
+@application.route('/ranklisting' , methods = ['GET','POST'])
 def rank_list():
     sorted_stations = rank()
     return render_template('rankedlist.html', stations = sorted_stations)
 
-@app.route('/resetlist', methods = ['POST'])
+@application.route('/resetlist', methods = ['POST'])
 def reset_list():
     # clears all stations from the database
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
     return rank_list()
 
-@app.route('/rankgraph' , methods = ['GET','POST'])
+@application.route('/rankgraph' , methods = ['GET','POST'])
 def rank_graph():
     # gets all stations from the database, and ranks them and generates a graph
     sorted_stations = rank()
@@ -138,19 +143,18 @@ def rank_graph():
     rankgraph.saveGraph(sorted_stations)
     return render_template('rankedgraph.html', stations = sorted_stations, plot_url = 'static/images/graph.png')
 
-@app.route('/resetgraph', methods = ['POST'])
+@application.route('/resetgraph', methods = ['POST'])
 def reset_graph():
     # clears all stations from the database
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
     return rank_graph()
 
-@app.route('/moreinfo')
+@application.route('/moreinfo')
 def infopage():
     return render_template('infopage.html')
 
 if __name__ == '__main__':
-    # used as the secret key for cookies
-    app.secret_key = 'math4800' 
-    app.config['SESSION_TYPE'] = 'filesystem'
-    app.run(host='0.0.0.0')
+    application.debug = True
+    application.secret_key = 'asdfjkl;'
+    application.run()

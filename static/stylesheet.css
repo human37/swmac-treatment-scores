@@ -92,6 +92,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    margin-bottom: 30px;
 }
 .submit_button {
     width: 100%;
@@ -164,4 +165,3 @@ table {
 h3 {
     text-align: center;
 }
-

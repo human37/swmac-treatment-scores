@@ -4,18 +4,19 @@
 </div>
 <div class="alert">
     {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert">
-        <h5 class="">{{ message }}</h5>
-    </div>
-    {% endfor %}
-    {% endif %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert">
+                    <h5 class="">{{ message }}</h5>
+                </div>
+            {% endfor %}
+        {% endif %}
     {% endwith %}
     <div class="alert" id="loading" style="display:none;">
         <h5 class="alert">Generating scores...</h5>
     </div>
 </div>
+
     <div class="form">
         <div class="input">
             <form method="post" action="/submit_temperature">
@@ -30,4 +31,8 @@
         <button type="submit" class="submit_button" name="post-submit" onclick="$('#loading').show();">
             Submit
         </button>
-        {% endblock %}
+    </div>
+
+</div>
+
+{% endblock %}
