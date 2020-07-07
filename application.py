@@ -1,17 +1,23 @@
-import time
-import os
-from flask import Flask, render_template, redirect, url_for, request, flash, make_response
 from tinydb import TinyDB
-import dbhelpers
-import rankgraph
-import scoring_algorithm
+from flask import Flask, render_template, redirect, url_for, request, flash, make_response, session
+import os, time, dbhelpers, rankgraph, scoring_algorithm, config
 
-application = Flask(__name__)
-
-# application.secret_key = 'xc3hJVxdbPLxaatX1wSx11r&xdcx8ebm8xd3m'
-
+application = app = Flask(__name__)
+application.debug = True
+application.secret_key = 'asfwoewb09bew'
+print(application.config)
 db = TinyDB('db.json')
 
+@app.errorhandler(InternalServerError)
+def handle_500(e):
+    original = getattr(e, "original_exception", None)
+
+    if original is None:
+        # direct 500 error, such as abort(500)
+        return application.config, 500
+
+    # wrapped unhandled error
+    return application.config
 def setup(temperature):
     # clears out any existing stations in the database
     dbhelpers.reset_stations(db)
@@ -74,25 +80,24 @@ def index():
     stations = rank()
     return render_template('feed.html', stations = stations)
 
-@application.route('/submit_temperature' , methods = ['POST'])
+@application.route('/submit_temperature' , methods = ['GET','POST'])
 def submit_temperature():
     # recieves the answers to the questions from the forms
     temperature = request.form.get('temperature_input')
     # makes sure  only numbers are used for temperature
     if temperature == None or not temperature.isdigit():
         flash('Please use only numbers for the temperature!')
-        return redirect(url_for('index')) 
     else:
         # clears out any existing records
         dbhelpers.reset_temperature(db)
         # converts to celsius
-        celsius_temperature = (int(temperature) - 32) * 5/9
+        celsius_temperature = ((int(temperature) - 32) * 5/9)
         # adds the new temperature to the database
         dbhelpers.new_temperature(db, celsius_temperature)
         # adds all stations to the database and rescores with new temperature
         setup(celsius_temperature)
         flash('Scores generated successfully!')
-    return redirect(url_for('index'))
+    return index()
 
 @application.route('/treatment', methods = ['GET'])
 def input_treatment():
@@ -132,7 +137,7 @@ def reset_list():
     # clears all stations from the database
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
-    return rank_list()
+    return 
 
 @application.route('/rankgraph' , methods = ['GET','POST'])
 def rank_graph():
@@ -156,5 +161,4 @@ def infopage():
 
 if __name__ == '__main__':
     application.debug = True
-    application.secret_key = 'asdfjkl;'
     application.run()
