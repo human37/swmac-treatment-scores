@@ -5,19 +5,8 @@ import os, time, dbhelpers, rankgraph, scoring_algorithm, config
 application = app = Flask(__name__)
 application.debug = True
 application.secret_key = 'asfwoewb09bew'
-print(application.config)
 db = TinyDB('db.json')
 
-@app.errorhandler(InternalServerError)
-def handle_500(e):
-    original = getattr(e, "original_exception", None)
-
-    if original is None:
-        # direct 500 error, such as abort(500)
-        return application.config, 500
-
-    # wrapped unhandled error
-    return application.config
 def setup(temperature):
     # clears out any existing stations in the database
     dbhelpers.reset_stations(db)
@@ -80,7 +69,7 @@ def index():
     stations = rank()
     return render_template('feed.html', stations = stations)
 
-@application.route('/submit_temperature' , methods = ['GET','POST'])
+@application.route('/submit_temperature' , methods = ['POST'])
 def submit_temperature():
     # recieves the answers to the questions from the forms
     temperature = request.form.get('temperature_input')
@@ -137,7 +126,7 @@ def reset_list():
     # clears all stations from the database
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
-    return 
+    return redirect('/ranklisting')
 
 @application.route('/rankgraph' , methods = ['GET','POST'])
 def rank_graph():
@@ -153,7 +142,7 @@ def reset_graph():
     # clears all stations from the database
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
-    return rank_graph()
+    return redirect('/rankgraph')
 
 @application.route('/moreinfo')
 def infopage():
