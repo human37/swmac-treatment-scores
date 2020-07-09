@@ -69,7 +69,7 @@ def index():
     stations = rank()
     return render_template('feed.html', stations = stations)
 
-@application.route('/submit_temperature' , methods = ['POST'])
+@application.route('/submit_temperature' , methods = ['GET', 'POST'])
 def submit_temperature():
     # recieves the answers to the questions from the forms
     temperature = request.form.get('temperature_input')
@@ -126,7 +126,7 @@ def reset_list():
     # clears all stations from the database
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
-    return redirect('/ranklisting')
+    return rank_list()
 
 @application.route('/rankgraph' , methods = ['GET','POST'])
 def rank_graph():
