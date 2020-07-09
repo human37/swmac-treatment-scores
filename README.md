@@ -19,7 +19,6 @@ with the following command:
 
 `python3 application.py`.
 
-## Development
 
 ### File Tree
 
