@@ -2,7 +2,9 @@
 
 This project was developed by students at Dixie State University. It's goal is to provide the Southwest Mosquito Abatement Center a tool in order to know which mosquito sites to prioritize. We developed a treatment priority score, by looking at the past data the SWMAC center provided us, as well as scientific papers regarding mosquito activity. The input variables our algorithm takes is the temperature and the geography of the station, and uses them to generate numerical scores for each site, with a higher score meaning a higher chance of a mosquito problem. 
 
-[More information about the project can be found here.](https://docs.google.com/document/d/1jZDWjx4b_Sxw5XU-NHvDYFSn1iXNnFA3rUbeUMOyN1I/edit?usp=sharing)
+More information about the project can be found [here.](https://docs.google.com/document/d/1jZDWjx4b_Sxw5XU-NHvDYFSn1iXNnFA3rUbeUMOyN1I/edit?usp=sharing)
+
+This project is currently deployed on Microsoft Azure, and can be found [here.](http://swmactreatmentscores.azurewebsites.net/)
 
 ### Installing Requirements
 
