@@ -1,6 +1,6 @@
 from tinydb import TinyDB
 from flask import Flask, render_template, redirect, url_for, request, flash, make_response, session
-import os, time, dbhelpers, rankgraph, scoring_algorithm, config
+import os, time, dbhelpers, rankgraph, scoring_algorithm
 
 application = app = Flask(__name__)
 application.debug = True
