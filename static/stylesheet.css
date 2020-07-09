@@ -1,4 +1,3 @@
-/* Add a black background color to the top navigation */
 .topnav {
     background-color: white;
     overflow: hidden;
@@ -6,7 +5,6 @@
     border-radius: 4px;
     font-weight: bold;
   }
-/* Style the links inside the navigation bar */
 .topnav a {
     float: left;
     display: block;
@@ -17,21 +15,17 @@
     font-size: 17px;
     font-family: 'IBM Plex Serif', serif;
 }
-/* Change the color of links on hover */
 .topnav a:hover {
     background-color: #4CAF50;
     color: rgb(255, 255, 255);
 }
-/* Add an active class to highlight the current page */
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
 }
-/* Hide the link that should open and close the topnav on small screens */
 .topnav .icon {
     display: none;
 }
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 700px) {
     .topnav a:not(:first-child) {display: none;}
     .topnav a.icon {
@@ -39,7 +33,6 @@
     display: block;
     }
 }
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
 #mosquito_temp_image {
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -132,14 +125,14 @@
     font-family: 'IBM Plex Serif', serif;
     }
 #content-wrap {
-    padding-bottom: 2.5rem;    /* Footer height */
+    padding-bottom: 2.5rem;   
     } 
 #footer {
     position: absolute;
     text-align:center;
     bottom: 0;
     width: 100%;
-    height: 2.5rem;            /* Footer height */
+    height: 2.5rem;           
     color: gray;
     }
 table, th, td {
