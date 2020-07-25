@@ -4,7 +4,7 @@
     overflow: hidden;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-weight: bold;
+    
   }
 /* Style the links inside the navigation bar */
 .topnav a {
@@ -15,7 +15,7 @@
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-    font-family: 'IBM Plex Serif', serif;
+    font-family: sans-serif;
 }
 /* Change the color of links on hover */
 .topnav a:hover {
@@ -129,7 +129,6 @@
 #page-container {
     position: relative;
     min-height: 90vh;
-    font-family: 'IBM Plex Serif', serif;
     }
 #content-wrap {
     padding-bottom: 2.5rem;    /* Footer height */
@@ -149,7 +148,6 @@ table, th, td {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    font-weight: bold;
 }
 table {
     width: 70%;
@@ -164,4 +162,8 @@ table {
 }
 h3 {
     text-align: center;
+    font-weight: lighter;
+}
+body {
+    font-family: sans-serif;
 }

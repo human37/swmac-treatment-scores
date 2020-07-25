@@ -3,7 +3,6 @@ from flask import Flask, render_template, redirect, url_for, request, flash, mak
 import os, time, dbhelpers, rankgraph, scoring_algorithm
 
 application = app = Flask(__name__)
-application.debug = True
 application.secret_key = 'asfwoewb09bew'
 db = TinyDB('db.json')
 
@@ -54,14 +53,6 @@ def manage_treatments():
         if (current_date - date_of_treatment) >= 259200:
             # if so remove the treatment from the database
             dbhelpers.delete_treatment(db, treatment['station'])
-
-@application.after_request
-def set_response_headers(response):
-    # forces flask to not cache static images
-    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
-    response.headers['Pragma'] = 'no-cache'
-    response.headers['Expires'] = '0'
-    return response
 
 @application.route('/')
 def index():
