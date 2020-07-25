@@ -10,13 +10,12 @@ def setup(temperature):
     # clears out any existing stations in the database
     dbhelpers.reset_stations(db)
     # reads from stations.txt into Station objects
-    f = open('stations.txt', 'r')
-    station_objects = []
-    for line in f:
-        line = line.split()
-        station = scoring_algorithm.Station(line[1], line[0])
-        station_objects.append(station)
-    f.close()
+    with open('stations.txt', 'r') as f:
+        station_objects = []
+        for line in f:
+            line = line.split()
+            station = scoring_algorithm.Station(line[1], line[0])
+            station_objects.append(station)
     # removes any treatments more than 3 days old
     manage_treatments()
     # adds each station into the database, unless they've been treated

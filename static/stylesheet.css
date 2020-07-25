@@ -51,6 +51,9 @@
     margin-right: auto;
     display:block;
 }
+table {
+    width: 70%;
+}
 @media screen and (max-width: 600px) {
     .topnav.responsive {position: relative;}
     .topnav.responsive a.icon {
@@ -69,6 +72,9 @@
     }
     .page_content {
         max-width: 100%;
+    }
+    table {
+        width: 95%;
     }
 }
 .page_title {
@@ -141,9 +147,6 @@ table, th, td {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-}
-table {
-    width: 70%;
 }
 .alert {
     text-align: center;
