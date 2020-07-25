@@ -155,15 +155,13 @@ table {
 .alert {
     text-align: center;
 }
-.ranked_image {
-   margin-right: auto;
-   margin-left: auto;
-   text-align: center;
-}
 h3 {
     text-align: center;
     font-weight: lighter;
 }
 body {
     font-family: sans-serif;
+}
+h1 {
+    font-style: normal;
 }

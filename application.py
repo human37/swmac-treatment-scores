@@ -1,6 +1,6 @@
 from tinydb import TinyDB
 from flask import Flask, render_template, redirect, url_for, request, flash, make_response, session
-import os, time, dbhelpers, rankgraph, scoring_algorithm
+import os, time, dbhelpers, scoring_algorithm
 
 application = app = Flask(__name__)
 application.secret_key = 'asfwoewb09bew'
@@ -125,8 +125,10 @@ def rank_graph():
     sorted_stations = rank()
     if len(sorted_stations) == 0:
         return render_template('rankedgraph.html')
-    rankgraph.saveGraph(sorted_stations)
-    return render_template('rankedgraph.html', stations = sorted_stations, plot_url = 'static/images/graph.png')
+    graph_data = {'Location' : 'Score'}
+    for station in sorted_stations:
+        graph_data[station['location']] = station['score']
+    return render_template('rankedgraph.html', data = graph_data)
 
 @application.route('/resetgraph', methods = ['POST'])
 def reset_graph():

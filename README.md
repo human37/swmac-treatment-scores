@@ -10,7 +10,7 @@ This project is currently deployed on Microsoft Azure, and can be found [here.](
 
 The requirements are listed in `requirements.txt`. In order to install run:
 
-`pip install -r requirements.txt`.
+`pip3 install -r requirements.txt`.
 
 ### Running the Server
 

@@ -2,29 +2,59 @@
 
 {% block content %}
 <html>
-    <head>
-    </head>
     <body>
         <div class="page_title">
           <h1>Ranked graph of treatment priority scores</h1>
         </div>
-        <div>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                    <div class="alert">
-                        <h5>{{ message }}</h5>
-                    </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
+            <div>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert">
+                            <h5>{{ message }}</h5>
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
             </div>  
-          <div class="ranked_image">
-            {% if plot_url %}
-                <img class="ranked_image_graph" src={{ plot_url}} alt="Chart showing treatment priority scores for each station" >
-            {% endif %}
-          </div>
-          {% if plot_url %}
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+            
+                {% if data %}
+
+                google.charts.load('current', {'packages':['bar']});
+                google.charts.setOnLoadCallback(drawChart);
+            
+                function drawChart(data) {
+                    var data = google.visualization.arrayToDataTable([
+                        {% for key, value in data.items() %}
+                            {% if value is string %}
+                                ['{{ key }}', '{{ value }}'],
+                            {% else %}
+                                ['{{ key }}', {{ value }}],
+                            {% endif %}
+                        {% endfor %}
+                        ]);
+
+                    var options = {
+                        bars: 'horizontal',
+                        width: $(window).width()-50,
+                        height: 800,
+                        colors: ['#4CAF50']
+                        };
+                    
+                    var chart = new google.charts.Bar(document.getElementById('ranked_chart'));
+            
+                    chart.draw(data, google.charts.Bar.convertOptions(options));
+                }
+
+                {% endif %}
+                
+            </script>
+
+            <div id="ranked_chart"></div>
+          
+          {% if data %}
         <form class="reset_holder" method="post" action="/resetgraph">
           <button type="submit" class="reset_button" name="post-submit">
             Reset
