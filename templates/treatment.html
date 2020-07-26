@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="page_title">
-    <h1>Input treatment information to update scores</h1>
+    <h1 style="font-weight:normal">Enter treatment information to update scores</h1>
 </div>
 
 <div class="alert">
@@ -10,13 +10,22 @@
     {% if messages %}
     {% for message in messages %}
     <div class="alert">
-        <h5 class="">{{ message }}</h5>
+        <h5 style="font-weight:normal" class="">{{ message }}</h5>
     </div>
     {% endfor %}
     {% endif %}
     {% endwith %}
     <div class="alert" id="loading" style="display:none;">
-        <h5 class="alert">Regenerating scores...</h5>
+        <h5  style="font-weight:normal" class="alert">Regenerating scores...</h5>
+    </div>
+</div>
+
+<div class="sub_nav">
+    <div class="sub_nav_left">
+        <a href="/">Input Temperature</a>
+    </div>
+    <div class="sub_nav_right" id="selected_tab">
+        <a href="/treatment">Input Treatment</a>
     </div>
 </div>
 

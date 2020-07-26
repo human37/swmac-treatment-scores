@@ -53,6 +53,7 @@
 }
 table {
     width: 70%;
+    margin-top: 8px;
 }
 @media screen and (max-width: 600px) {
     .topnav.responsive {position: relative;}
@@ -85,13 +86,14 @@ table {
 .form {
     width: 25em;
     padding: 12px 20px;
-    margin: 8px 0;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     margin-bottom: 30px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 .submit_button {
     width: 100%;
@@ -112,9 +114,6 @@ table {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
-.submit_button:hover, .reset_button:hover {
-    background-color: #45a049;
 }
 .reset_holder {
     text-align: center;
@@ -158,6 +157,48 @@ h3 {
 body {
     font-family: sans-serif;
 }
-h1 {
-    font-style: normal;
+.sub_nav {
+    width: 25em;
+    margin-left: auto;
+    margin-right: auto;
+    height: 41px;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    display: flex;
+}
+.sub_nav_left {
+    width: 50%;
+    justify-content: left;
+    position: relative;
+}
+.sub_nav_right {
+    width: 50%;
+    justify-content: right;
+    position: relative;
+}
+.sub_nav_left:hover, .sub_nav_right:hover {
+    background-color: #4caf50;
+}
+.sub_nav_left a, .sub_nav_right a {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    padding-top: 8px;
+    color: black;
+}
+.sub_nav_left a:hover, .sub_nav_right a:hover {
+    color: white;
+}
+#selected_tab, #selected_tab a {
+    background-color: #4caf50;
+    color: white;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
 }

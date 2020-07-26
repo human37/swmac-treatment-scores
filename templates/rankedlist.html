@@ -8,19 +8,29 @@
 
 <body>
     <div class="page_title">
-        <h1>Ranked listing of treatment priority scores</h1>
+        <h1 style="font-weight:normal">Ranked listing of treatment priority scores</h1>
     </div>
     <div>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
         <div class="alert">
-            <h5 class="">{{ message }}</h5>
+            <h5 style="font-weight:normal" class="">{{ message }}</h5>
         </div>
         {% endfor %}
         {% endif %}
         {% endwith %}
     </div>
+
+    <div class="sub_nav">
+        <div class="sub_nav_left" id="selected_tab">
+            <a href="/ranklisting">List View</a>
+        </div>
+        <div class="sub_nav_right">
+            <a href="/rankgraph">Graph View</a>
+        </div>
+    </div>
+
     <div class="table_styling">
         <table>
             <tr>

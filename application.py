@@ -66,6 +66,7 @@ def submit_temperature():
     # makes sure  only numbers are used for temperature
     if temperature == None or not temperature.isdigit():
         flash('Please use only numbers for the temperature!')
+        return index()
     else:
         # clears out any existing records
         dbhelpers.reset_temperature(db)
@@ -76,7 +77,7 @@ def submit_temperature():
         # adds all stations to the database and rescores with new temperature
         setup(celsius_temperature)
         flash('Scores generated successfully!')
-    return index()
+    return rank_list()
 
 @application.route('/treatment', methods = ['GET'])
 def input_treatment():
@@ -104,11 +105,13 @@ def submit_treatment():
     temperature = dbhelpers.get_temperature(db)
     setup(temperature[0]['temperature'])
     flash("Treatment information was updated successfully!")
-    return input_treatment()
+    return rank_list()
 
 @application.route('/ranklisting' , methods = ['GET','POST'])
 def rank_list():
     sorted_stations = rank()
+    if len(sorted_stations) == 0:
+        flash('No scores have been generated, go back to the home tab to generate scores!')
     return render_template('rankedlist.html', stations = sorted_stations)
 
 @application.route('/resetlist', methods = ['POST'])
@@ -116,13 +119,14 @@ def reset_list():
     # clears all stations from the database
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
-    return rank_list()
+    return index()
 
 @application.route('/rankgraph' , methods = ['GET','POST'])
 def rank_graph():
     # gets all stations from the database, and ranks them and generates a graph
     sorted_stations = rank()
     if len(sorted_stations) == 0:
+        flash('No scores have been generated, go back to the home tab to generate scores!')
         return render_template('rankedgraph.html')
     graph_data = {'Location' : 'Score'}
     for station in sorted_stations:
@@ -134,7 +138,7 @@ def reset_graph():
     # clears all stations from the database
     dbhelpers.reset_stations(db)
     flash('Station data reset successfully!')
-    return redirect('/rankgraph')
+    return index()
 
 @application.route('/moreinfo')
 def infopage():

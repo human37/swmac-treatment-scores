@@ -1,19 +1,30 @@
 {% extends "base.html" %} {% block content %}
+
 <div class="page_title">
-    <h1>SWMAC mosquito station ranking system</h1>
+    <h1 style="font-weight:normal">Enter temperature information to generate scores</h1>
 </div>
+
 <div class="alert">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
                 <div class="alert">
-                    <h5 class="">{{ message }}</h5>
+                    <h5 style="font-weight:normal" class="">{{ message }}</h5>
                 </div>
             {% endfor %}
         {% endif %}
     {% endwith %}
     <div class="alert" id="loading" style="display:none;">
-        <h5 class="alert">Generating scores...</h5>
+        <h5 style="font-weight:normal" class="alert">Generating scores...</h5>
+    </div>
+</div>
+
+<div class="sub_nav">
+    <div class="sub_nav_left" id="selected_tab">
+        <a href="/">Input Temperature</a>
+    </div>
+    <div class="sub_nav_right">
+        <a href="/treatment">Input Treatment</a>
     </div>
 </div>
 
