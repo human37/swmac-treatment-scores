@@ -46,10 +46,11 @@
                         {% endfor %}
                         ]);
 
+                    const width  = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
                     var options = {
                         bars: 'horizontal',
-                        width: $(window).width()-50,
-                        height: 800,
+                        width: width - 30,
+                        height: 600,
                         colors: ['#4CAF50']
                         };
                     
