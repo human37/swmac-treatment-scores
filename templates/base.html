@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='stylesheet.css') }}" type="text/css">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon-16x16.png">
+    <link rel="manifest" href="static/images/site.webmanifest">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='scripts.js') }}"></script>
 </head>
@@ -15,9 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <div class="topnav" id="myTopnav">
         <a href="/" class="active">Home</a>
-        <a href="/treatment">Input Treatment</a>
-        <a href="/ranklisting">Ranked Listing</a>
-        <a href="/rankgraph">Ranked Graph</a>
+        <a href="/ranklisting">Rankings</a>
         <a href="/moreinfo">Info Page</a>
         <a href="javascript:void(0);" class="icon" onclick="nav_mobile_view()">
             <i class="fa fa-bars"></i>
