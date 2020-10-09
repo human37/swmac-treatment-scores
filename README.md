@@ -5,7 +5,8 @@ This project was developed by students at Dixie State University. It's goal is t
 More information about the project can be found [here.](https://docs.google.com/document/d/1jZDWjx4b_Sxw5XU-NHvDYFSn1iXNnFA3rUbeUMOyN1I/edit?usp=sharing)
 
 This project is currently deployed on Microsoft Azure, and can be found [here.](http://swmactreatmentscores.azurewebsites.net/)
-(currently hosted on Azure free-tier, so the first ping after a long period of inactivity might take ~10-20 seconds.)
+
+(_currently hosted on Azure free-tier, so the first ping after a long period of inactivity might take ~10-20 seconds._)
 
 ### Installing Requirements
 
